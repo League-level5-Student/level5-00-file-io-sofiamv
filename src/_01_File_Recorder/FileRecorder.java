@@ -1,5 +1,12 @@
 package _01_File_Recorder;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.swing.JFileChooser;
+
 import javax.swing.JOptionPane;
 
 public class FileRecorder {
@@ -10,5 +17,10 @@ public class FileRecorder {
 	}
 	public void gah() {
 	String message = JOptionPane.showInputDialog("say anything");
+	try {
+	FileWriter f = new FileWriter(message);
+	}catch(IOException a){
+		a.printStackTrace();
+	}
 	}
 }

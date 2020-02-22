@@ -1,6 +1,16 @@
 package _03_To_Do_List;
 
-public class ToDoList {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+
+public class ToDoList implements ActionListener {
 	/*
 	 * Create a program with five buttons, add task, view tasks, remove task, save list, and load list. 
 	 * 
@@ -21,4 +31,55 @@ public class ToDoList {
 	 * 
 	 * When the program starts, it should automatically load the last saved file into the list.
 	 */
+	JButton addtask;
+	 JButton viewtask;
+	 JButton removetask;
+	 JButton savelist;
+	 JButton loadlist;
+	 ArrayList<String> list = new ArrayList();
+	 public static void main(String[] args) {
+		ToDoList asdfghjkl = new ToDoList();
+		asdfghjkl.gaah();
+	}
+	 public void gaah () {
+		 
+		 JPanel panel = new JPanel();
+		 JFrame frame = new JFrame();
+		  addtask = new JButton("add task");
+		  viewtask = new JButton("view task");
+		  removetask = new JButton("remove task");
+		  savelist = new JButton("save list");
+		  loadlist = new JButton("load list");
+		 
+		 frame.setVisible(true);
+		 frame.add(panel);
+		 panel.add(loadlist);
+		 panel.add(savelist);
+		 panel.add(removetask);
+		 panel.add(viewtask);
+		 panel.add(addtask);
+		 
+		 addtask.addActionListener(this);
+		 removetask.addActionListener(this);
+		 viewtask.addActionListener(this);
+		 savelist.addActionListener(this);
+		 loadlist.addActionListener(this);
+		 
+	 }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == addtask) {
+		String bleh = JOptionPane.showInputDialog("add a task:").toLowerCase();
+		list.add(bleh);
+		}
+		if(e.getSource() == viewtask) {
+		JOptionPane.showMessageDialog(null, list.toString());
+		}
+		if(e.getSource() == removetask) {
+		String what = JOptionPane.showInputDialog("which number task do you want to remove?");
+		int p = Integer.parseInt(what) - 1;
+		list.remove(p);
+		}
+	}
 }
