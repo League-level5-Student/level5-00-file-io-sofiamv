@@ -18,7 +18,9 @@ public class FileRecorder {
 	public void gah() {
 	String message = JOptionPane.showInputDialog("say anything");
 	try {
-	FileWriter f = new FileWriter(message);
+	FileWriter f = new FileWriter("message.txt");
+	f.write(message);
+	f.close();
 	}catch(IOException a){
 		a.printStackTrace();
 	}

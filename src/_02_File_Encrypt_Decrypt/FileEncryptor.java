@@ -11,24 +11,43 @@ public class FileEncryptor {
 	// Use the methods in the String and Character classes to save
 	// an encrypted form of the message to a file
 	public static void main(String[] args) {
-	FileEncryptor ihavenoideawhatimdoing = new FileEncryptor();
+	Encryption g = new Encryption();
+	FileEncryptor i = new FileEncryptor();
 	String message = JOptionPane.showInputDialog("say anything");
-	String what = ihavenoideawhatimdoing.encrypt(message, 'w');
+	String encrypted = g.encryptor(message);
 	try {
-		FileWriter fw = new FileWriter(what);
+		FileWriter fw = new FileWriter("message.txt");
+		fw.write(encrypted);
+		fw.close();
 	}catch(IOException a){
 		a.printStackTrace();
 	}
+	System.out.println(encrypted);
+	}
 	}
 	
 	
 	
 	
-	
-	
-	
-	
-	public static String encrypt(String s, char key) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*	public static String encrypt(String s, char key) {
 		byte[] bytes = s.getBytes();
 		String g = Utilities.encrypt(bytes, (byte) key);
 		return g;
@@ -54,3 +73,4 @@ class Utilities {
 		return new String(b);
 	}
 }
+*/

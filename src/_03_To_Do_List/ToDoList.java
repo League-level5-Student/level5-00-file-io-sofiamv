@@ -2,6 +2,10 @@ package _03_To_Do_List;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -36,6 +40,8 @@ public class ToDoList implements ActionListener {
 	 JButton removetask;
 	 JButton savelist;
 	 JButton loadlist;
+	 String prevlist;
+	 ArrayList<String> previouslist = new ArrayList();
 	 ArrayList<String> list = new ArrayList();
 	 public static void main(String[] args) {
 		ToDoList asdfghjkl = new ToDoList();
@@ -80,6 +86,38 @@ public class ToDoList implements ActionListener {
 		String what = JOptionPane.showInputDialog("which number task do you want to remove?");
 		int p = Integer.parseInt(what) - 1;
 		list.remove(p);
+		}
+		if(e.getSource() == savelist) {
+			String name = JOptionPane.showInputDialog("name your file:");
+			try {
+			FileWriter fw = new FileWriter(name);
+			for(int i = 0; i < list.size(); i++) {
+				fw.write(list.get(i) + ", ");
+			}
+			fw.close();
+			}catch(IOException g) {
+				g.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "your list is saved.");
+		}
+		if(e.getSource() == loadlist) {
+			String name = JOptionPane.showInputDialog("what is the name of the file?");
+			prevlist = "";
+			try {
+				FileReader fr = new FileReader(name);
+				int c = fr.read();
+				while(c != -1){
+					System.out.print((char)c);
+					prevlist = prevlist + (char)c;
+					c = fr.read();
+				}
+				fr.close();
+			} catch (FileNotFoundException l) {
+				l.printStackTrace();
+			} catch (IOException g) {
+				g.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, prevlist);
 		}
 	}
 }
